@@ -1,9 +1,15 @@
+import os
+
 import boto3
-from moto import mock_dynamodb2
 from boto3.dynamodb.conditions import Attr
+from moto import mock_dynamodb2
 
 
 def main():
+    os.environ["AWS_ACCESS_KEY_ID"] = "testing"
+    os.environ["AWS_SECRET_ACCESS_KEY"] = "testing"
+    os.environ["AWS_SECURITY_TOKEN"] = "testing"
+    os.environ["AWS_SESSION_TOKEN"] = "testing"
     with mock_dynamodb2():
         client = boto3.client("dynamodb")
         resource_client = boto3.resource("dynamodb")
